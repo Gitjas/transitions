@@ -12,13 +12,16 @@ THEN
 		FadeToColor([30.0],0)
 		Wait(1)
 
-		// Poof to outside of Baldur's gate as in end of SoD
+		// Clear the party
+		ActionOverride(Player6,LeaveParty())
+		ActionOverride(Player5,LeaveParty())
+		ActionOverride(Player4,LeaveParty())
+		ActionOverride(Player3,LeaveParty())
+		ActionOverride(Player2,LeaveParty())
+		Wait(1)
+
+		// Poof the PC to outside of Baldur's gate as in end of SoD
 		LeaveAreaLUA("BD6100","",[674.393],NE)
-		ActionOverride(Player2,LeaveAreaLUA("BD6100","",[632.404],NE))  
-		ActionOverride(Player3,LeaveAreaLUA("BD6100","",[674.423],NE))  
-		ActionOverride(Player4,LeaveAreaLUA("BD6100","",[639.439],NE))  
-		ActionOverride(Player5,LeaveAreaLUA("BD6100","",[590.422],NE))  
-		ActionOverride(Player6,LeaveAreaLUA("BD6100","",[669.464],NE))  
 		Wait(1)
 
 		SetGlobal("bd_player_exiled","GLOBAL",2) // To indicate that we had nothing to do with it
@@ -72,106 +75,26 @@ THEN
 		ActionOverride("jaheira",ChangeAIScript("",DEFAULT))
 		ActionOverride("jaheira",SetDialogue("bdjaheir"))
 
-		Continue()
-END
-
-IF
-	!InPartyAllowDead("IMOEN2")
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ChangeEnemyAlly("IMOEN2",NEUTRAL)  // Imoen
 		ChangeSpecifics("IMOEN2",ALLIES)  // Imoen
-		Continue()
-END
-
-IF
-	!InPartyAllowDead("IMOEN2")
-	!NumInParty(6)
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ActionOverride("IMOEN2",JoinParty())
-		Continue()
-END
 
-IF
-	!InPartyAllowDead("MINSC")
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ChangeEnemyAlly("MINSC",NEUTRAL)  // Imoen
 		ChangeSpecifics("MINSC",ALLIES)  // Imoen
-		Continue()
-END
-
-IF
-	!InPartyAllowDead("MINSC")
-	!NumInParty(6)
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ActionOverride("MINSC",JoinParty())
-		Continue()
-END
 
-IF
-	!InPartyAllowDead("JAHEIRA")
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ChangeEnemyAlly("JAHEIRA",NEUTRAL)  // Imoen
 		ChangeSpecifics("JAHEIRA",ALLIES)  // Imoen
-		Continue()
-END
-
-IF
-	!InPartyAllowDead("JAHEIRA")
-	!NumInParty(6)
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ActionOverride("JAHEIRA",JoinParty())
-		Continue()
-END
 
-IF
-	!InPartyAllowDead("DYNAHEIR")
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ChangeEnemyAlly("DYNAHEIR",NEUTRAL)  // Imoen
 		ChangeSpecifics("DYNAHEIR",ALLIES)  // Imoen
-		Continue()
-END
-
-IF
-	!InPartyAllowDead("DYNAHEIR")
-	!NumInParty(6)
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ActionOverride("DYNAHEIR",JoinParty())
-		Continue()
-END
 
-IF
-	!InPartyAllowDead("KHALID")
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ChangeEnemyAlly("KHALID",NEUTRAL)  // Imoen
 		ChangeSpecifics("KHALID",ALLIES)  // Imoen
-		Continue()
-END
-
-IF
-	!InPartyAllowDead("KHALID")
-	!NumInParty(6)
-THEN
-	RESPONSE #100
-		CutSceneId(Player1)
 		ActionOverride("KHALID",JoinParty())
+
 		Continue()
 END
 
